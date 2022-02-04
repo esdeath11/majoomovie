@@ -19,4 +19,10 @@ class AuthenProvider extends ChangeNotifier {
     email = value;
     notifyListeners();
   }
+
+  void removeAll() {
+    statusLogin = false;
+    email = '';
+    notifyListeners();
+  }
 }

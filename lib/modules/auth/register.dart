@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:majoomovie/data/database/database_handler.dart';
 import 'package:majoomovie/data/models/user.dart';
+import 'package:majoomovie/data/provider/auth_provider.dart';
 import 'package:majoomovie/modules/auth/login.dart';
+import 'package:majoomovie/modules/dashboard/dashboard.dart';
 
 class RegisterScreen extends StatelessWidget {
   static const routename = "/auth/register";
@@ -37,6 +39,7 @@ class __RegisterFormState extends State<_RegisterForm> {
   DatabaseHandler handler = DatabaseHandler();
   String? errorText;
   bool registerStatus = false;
+  AuthenProvider authenProvider = AuthenProvider.instance;
 
   @override
   void initState() {
@@ -67,6 +70,9 @@ class __RegisterFormState extends State<_RegisterForm> {
     setState(() {
       handler.initializeDB().whenComplete(() async {
         await addUsers(getUsername, getEmail, getPassword);
+        authenProvider.email = getEmail;
+        authenProvider.statusLogin = true;
+        Navigator.pushReplacementNamed(context, DashBoardScreen.routename);
       });
     });
   }

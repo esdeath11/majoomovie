@@ -48,14 +48,18 @@ class __LoginFormState extends State<_LoginForm> {
       errorText = "please fill your email and password";
     } else {
       setState(() {
-        handler.getLogin(getEmail, getPassword);
-        if (authenProvider.statusLogin == true) {
-          Navigator.pushReplacementNamed(context, DashBoardScreen.routename);
-          authenProvider.email = getEmail;
-          print(authenProvider.statusLogin);
-        } else {
-          errorText = "user not found!";
-        }
+        handler.initializeDB().whenComplete(() {
+          handler.getLogin(getEmail, getPassword).whenComplete(() {
+            if (authenProvider.statusLogin == true) {
+              Navigator.pushReplacementNamed(
+                  context, DashBoardScreen.routename);
+              authenProvider.email = getEmail;
+              print(authenProvider.statusLogin);
+            } else {
+              errorText = "user not found!";
+            }
+          });
+        });
       });
     }
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:majoomovie/common/routes.dart';
 import 'package:majoomovie/data/provider/auth_provider.dart';
+import 'package:majoomovie/data/provider/dashboard_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthenProvider>(
-            create: (_) => AuthenProvider.instance)
+            create: (_) => AuthenProvider.instance),
+        ChangeNotifierProvider<DashboardProvider>(
+            create: (_) => DashboardProvider.instance)
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

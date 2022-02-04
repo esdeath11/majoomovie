@@ -14,6 +14,6 @@ Route? onGenerateRoutes(RouteSettings settings) {
     case DashBoardScreen.routename:
       return MaterialPageRoute(builder: (_) => DashBoardScreen());
     default:
-      return MaterialPageRoute(builder: (_) => RegisterScreen());
+      return MaterialPageRoute(builder: (_) => LoginScreen());
   }
 }
